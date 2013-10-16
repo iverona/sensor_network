@@ -75,8 +75,8 @@ void loop() {
   sendTemp(temp);
 
   powerOnLed();
-  Narcoleptic.delay(60000);
-  powerOfLed();
+  Narcoleptic.delay(600000);
+  powerOffLed();
 }
 
 float readTemp() {

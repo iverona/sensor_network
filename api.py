@@ -14,6 +14,6 @@ def sensor():
 
 def loadValue(value):
 	print "Loading value..."
-	subprocess.call(['/usr/bin/zabbix_sender', '-z', '127.0.0.1', '-s', 'TempSensor', '-k', 'sensors.temp', '-o', str(value)] )
+	subprocess.call(['/usr/bin/zabbix_sender', '-z', '127.0.0.1', '-s', 'TempSensor', '-k', 'sensors.temp', '-o', str(value-1.3)] )
 
 run(host='0.0.0.0',port=8080, debug=True)
