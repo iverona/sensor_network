@@ -1,4 +1,4 @@
-import subprocess
+import subprocess, os, shlex
 from bottle import route, run, post, request
 
 @post('/sensor')
@@ -14,6 +14,9 @@ def sensor():
 
 def loadValue(value):
 	print "Loading value..."
-	subprocess.call(['/usr/bin/zabbix_sender', '-z', '127.0.0.1', '-s', 'TempSensor', '-k', 'sensors.temp', '-o', str(value-1.3)] )
+	devnull = open(os.devnull, 'w')
+	subprocess.call(shlex.split(
+			'/usr/bin/zabbix_sender -z 127.0.0.1 -s TempSensor -k sensors.temp -o %s' % str(value-1.3)),
+			stdout=devnull, stderr=devnull) 
 
 run(host='0.0.0.0',port=8080, debug=True)
